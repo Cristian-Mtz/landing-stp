@@ -160,4 +160,8 @@ El proyecto se dejó listo para desplegarse como sitio estático en Vercel sin a
 
 ## Despliegue
 
-Para publicar en Vercel basta con importar el repositorio y usar la configuración estándar para Astro. En esta versión no hace falta un adapter adicional.
+La landing ya está desplegada en Vercel y disponible en:
+
+- [https://landing-stp.vercel.app](https://landing-stp.vercel.app)
+
+El proyecto se publica como sitio estático usando la configuración estándar de Astro en Vercel, sin necesidad de un adapter adicional para esta versión.
