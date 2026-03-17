@@ -152,6 +152,19 @@ El proyecto se dejó listo para desplegarse como sitio estático en Vercel sin a
 - HTML simple y directo.
 - Menor carga de JavaScript posible para el tipo de experiencia.
 
+### SEO técnico base
+
+- Se configuró `site` en `astro.config.mjs` para generar URLs absolutas consistentes en producción.
+- El layout base incluye `canonical`, `meta robots`, `Open Graph`, `Twitter URL` y `schema.org` en JSON-LD.
+- Se añadieron `public/robots.txt` y `public/sitemap.xml` para exponer señales básicas de indexación.
+
+Si en el futuro cambia el dominio de despliegue, hay que actualizar estos puntos en conjunto:
+
+- `astro.config.mjs`
+- `public/robots.txt`
+- `public/sitemap.xml`
+- cualquier URL absoluta usada en metadatos o assets sociales
+
 ## Consideraciones del proyecto
 
 - El formulario está planteado como demo de interacción y validación de frontend.

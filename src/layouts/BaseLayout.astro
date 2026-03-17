@@ -10,9 +10,42 @@ interface Props {
 
 const { title, description } = Astro.props;
 const ogTitle = title;
-const ogImage = "/images/og-stp-cover.svg";
+const siteUrl = Astro.site ?? new URL("https://landing-stp.vercel.app");
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl);
+const ogImage = new URL("/images/og-stp-cover.svg", siteUrl).toString();
 const ogImageAlt =
   "Vista previa de la landing de STP con enfoque en pagos digitales, seguridad y velocidad.";
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: title,
+    url: siteUrl.toString(),
+    inLanguage: "es-MX",
+    description,
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "STP",
+    url: siteUrl.toString(),
+    description,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Av. Insurgentes Sur 1602",
+      addressLocality: "Ciudad de Mexico",
+      addressCountry: "MX",
+    },
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "sales",
+      email: "contacto@stp.com.mx",
+      telephone: "+52 55 1234 5678",
+      areaServed: "MX",
+      availableLanguage: ["es", "en"],
+    },
+  },
+];
 ---
 
 <!doctype html>
@@ -23,12 +56,16 @@ const ogImageAlt =
     <meta name="generator" content={Astro.generator} />
     <meta name="theme-color" content="#2563eb" />
     <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonicalUrl.toString()} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_MX" />
+    <meta property="og:url" content={canonicalUrl.toString()} />
     <meta property="og:title" content={ogTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:alt" content={ogImageAlt} />
+    <meta name="twitter:url" content={canonicalUrl.toString()} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={ogTitle} />
     <meta name="twitter:description" content={description} />
@@ -36,6 +73,11 @@ const ogImageAlt =
     <meta name="twitter:image:alt" content={ogImageAlt} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify(schema)}
+    ></script>
     <title>{title}</title>
   </head>
   <body>
