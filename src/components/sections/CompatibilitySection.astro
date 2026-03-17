@@ -1,0 +1,47 @@
+---
+import { compatibility } from "../../data/landing";
+import Chip from "../ui/Chip.astro";
+import Container from "../ui/Container.astro";
+import SectionHeader from "../ui/SectionHeader.astro";
+---
+
+<section class="section section--tight section-divider compatibility">
+  <Container>
+    <div class="compatibility__inner">
+      <SectionHeader
+        align="center"
+        title={compatibility.title}
+        description={compatibility.description}
+      />
+      <div class="compatibility__tags">
+        {compatibility.tags.map((tag) => <Chip label={tag} />)}
+      </div>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .compatibility {
+    background: var(--color-neutral-50);
+  }
+
+  .compatibility__inner {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .compatibility :global(.section-header) {
+    margin-inline: auto;
+  }
+
+  .compatibility__tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .compatibility :global(.section-header h2) {
+    font-size: var(--text-h5);
+  }
+</style>

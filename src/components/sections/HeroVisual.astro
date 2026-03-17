@@ -1,0 +1,32 @@
+---
+import { Image } from "astro:assets";
+import heroPlaceholder from "../../assets/images/hero-placeholder.png";
+---
+
+<div class="hero-visual" aria-hidden="true">
+  <Image
+    src={heroPlaceholder}
+    alt=""
+    width={460}
+    height={580}
+    loading="eager"
+  />
+</div>
+
+<style>
+  .hero-visual {
+    position: relative;
+    width: 100%;
+    border-radius: 1.25rem;
+    box-shadow: var(--shadow-2xl);
+    overflow: hidden;
+    aspect-ratio: 460 / 600;
+    background-color: var(--color-neutral-950);
+  }
+
+  .hero-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+</style>

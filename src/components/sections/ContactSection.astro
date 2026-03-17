@@ -1,0 +1,280 @@
+---
+import { contact } from "../../data/landing";
+import Button from "../ui/Button.astro";
+import Card from "../ui/Card.astro";
+import Container from "../ui/Container.astro";
+import Icon from "../ui/Icon.astro";
+import InputField from "../ui/InputField.astro";
+
+interface Props {
+  benefits: string[];
+}
+
+const { benefits } = Astro.props;
+---
+
+<section class="contact" id="contacto">
+  <Container>
+    <div class="contact__inner">
+      <div class="contact__copy">
+        <h2>{contact.title}</h2>
+        <p>{contact.description}</p>
+        <ul>
+          {
+            benefits.map((benefit) => (
+              <li>
+                <span class="contact__benefit-icon">
+                  <Icon name="check-circle" size="10" strokeWidth="1.9" />
+                </span>
+                <span>{benefit}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <Card class="contact__card" padding="lg">
+        <form class="contact__form" novalidate data-contact-form>
+          <InputField
+            label="Nombre completo"
+            name="fullName"
+            required={true}
+            placeholder="Juan Pérez"
+            autocomplete="name"
+            icon="user"
+          />
+          <InputField
+            label="Empresa"
+            name="company"
+            required={true}
+            placeholder="Tu Empresa S.A."
+            autocomplete="organization"
+            icon="building"
+          />
+          <InputField
+            label="Correo electrónico"
+            name="email"
+            type="email"
+            required={true}
+            placeholder="juan@empresa.com"
+            autocomplete="email"
+            icon="mail"
+          />
+          <InputField
+            label="Teléfono"
+            name="phone"
+            type="tel"
+            required={true}
+            placeholder="+52 55 1234 5678"
+            autocomplete="tel"
+            icon="phone"
+          />
+          <Button
+            label="Enviar solicitud"
+            type="submit"
+            fullWidth={true}
+            icon="arrow-right"
+          />
+          <p class="contact__simulation">
+            Demo interactiva: la validación y el envío están simulados para esta
+            entrega.
+          </p>
+          <p class="contact__privacy">{contact.privacyNote}</p>
+          <p class="contact__status" data-form-status aria-live="polite"></p>
+        </form>
+      </Card>
+    </div>
+  </Container>
+</section>
+
+<script is:inline>
+  const form = document.querySelector("[data-contact-form]");
+  if (form instanceof HTMLFormElement) {
+    const statusNode = form.querySelector("[data-form-status]");
+    const validators = {
+      fullName: (value) => value.trim().length >= 3,
+      company: (value) => value.trim().length >= 2,
+      email: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
+      phone: (value) => /^[+()\d\s-]{9,}$/.test(value.trim()),
+    };
+
+    const setState = (input, valid, message) => {
+      const field = input.closest("[data-field]");
+      const help = field?.querySelector(".field__message");
+      if (!(field instanceof HTMLElement) || !(help instanceof HTMLElement))
+        return;
+      field.dataset.state = valid ? "success" : "error";
+      input.setAttribute("aria-invalid", String(!valid));
+      help.hidden = valid;
+      help.textContent = valid ? "" : message;
+    };
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      let hasError = false;
+
+      Array.from(form.elements).forEach((element) => {
+        if (!(element instanceof HTMLInputElement)) return;
+        const validate = validators[element.name];
+        if (!validate) return;
+        const valid = validate(element.value);
+        setState(
+          element,
+          valid,
+          element.closest("[data-field]")?.getAttribute("data-default-error") ??
+            "Campo inválido.",
+        );
+        hasError ||= !valid;
+      });
+
+      if (!(statusNode instanceof HTMLElement)) return;
+
+      if (hasError) {
+        statusNode.dataset.state = "error";
+        statusNode.textContent =
+          "Revisa los campos marcados antes de enviar tu solicitud.";
+        return;
+      }
+
+      statusNode.dataset.state = "success";
+      statusNode.textContent =
+        "Solicitud simulada correctamente. La interacción representa el flujo de contacto sin conexión a un backend real.";
+      form.reset();
+
+      Array.from(form.querySelectorAll("[data-field]")).forEach((field) => {
+        if (!(field instanceof HTMLElement)) return;
+        field.dataset.state = "";
+        const message = field.querySelector(".field__message");
+        const input = field.querySelector("input");
+        if (message instanceof HTMLElement) {
+          message.hidden = true;
+          message.textContent = "";
+        }
+        if (input instanceof HTMLInputElement) {
+          input.setAttribute("aria-invalid", "false");
+        }
+      });
+    });
+  }
+</script>
+
+<style>
+  .contact {
+    padding-block: var(--section-space);
+    background:
+      radial-gradient(
+        circle at top left,
+        rgba(96, 165, 250, 0.2),
+        transparent 34%
+      ),
+      radial-gradient(
+        circle at bottom right,
+        rgba(59, 130, 246, 0.2),
+        transparent 30%
+      ),
+      linear-gradient(
+        135deg,
+        var(--color-primary-700),
+        var(--color-primary-500)
+      );
+    color: var(--color-neutral-0);
+  }
+
+  .contact__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 25rem) minmax(19rem, 22rem);
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .contact__copy {
+    display: grid;
+    gap: 0.875rem;
+  }
+
+  .contact__copy h2 {
+    max-width: 20rem;
+    font-size: var(--text-h2);
+    line-height: var(--leading-snug);
+    font-weight: var(--weight-extrabold);
+    color: var(--color-neutral-0);
+  }
+
+  .contact__copy p {
+    max-width: 21rem;
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.84);
+  }
+
+  .contact__copy ul {
+    display: grid;
+    gap: 0.5rem;
+    padding-top: 0.125rem;
+  }
+
+  .contact__copy li {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    font-size: 0.8125rem;
+  }
+
+  .contact__benefit-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    color: #c7fff1;
+  }
+
+  .contact__card {
+    padding: 0;
+    box-shadow: var(--shadow-2xl);
+  }
+
+  .contact__form {
+    display: grid;
+    gap: 0.875rem;
+  }
+
+  .contact__simulation {
+    font-size: 0.75rem;
+    line-height: 1.5;
+    text-align: center;
+    color: rgba(17, 24, 39, 0.72);
+  }
+
+  .contact__privacy {
+    font-size: 0.75rem;
+    line-height: 1.5;
+    text-align: center;
+    color: var(--color-text-soft);
+  }
+
+  .contact__status {
+    min-height: 1.25rem;
+    margin: 0;
+    font-size: 0.8125rem;
+    font-weight: var(--weight-medium);
+    text-align: center;
+  }
+
+  .contact__status[data-state="error"] {
+    color: var(--color-error);
+  }
+
+  .contact__status[data-state="success"] {
+    color: var(--color-success);
+  }
+
+  @media (max-width: 1023px) {
+    .contact__inner {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+  }
+</style>

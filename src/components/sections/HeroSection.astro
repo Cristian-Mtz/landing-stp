@@ -1,0 +1,195 @@
+---
+import { hero } from "../../data/landing";
+import Badge from "../ui/Badge.astro";
+import Button from "../ui/Button.astro";
+import Container from "../ui/Container.astro";
+import HeroVisual from "./HeroVisual.astro";
+
+const titleParts = hero.title.split(hero.highlight);
+---
+
+<section class="section hero" id="inicio">
+  <Container>
+    <div class="hero__inner">
+      <div class="hero__copy">
+        <Badge label={hero.badge} tone="primary" />
+        <h1>
+          {titleParts[0]}
+          <span>{hero.highlight}</span>
+          {titleParts[1]}
+        </h1>
+        <p class="text-muted">{hero.description}</p>
+        <div class="hero__actions">
+          <Button
+            label={hero.primaryCta.label}
+            href={hero.primaryCta.href}
+            size="lg"
+            icon="arrow-right"
+          />
+          <Button
+            label={hero.secondaryCta.label}
+            href={hero.secondaryCta.href}
+            variant="secondary"
+            size="lg"
+            icon="play"
+            iconPosition="left"
+            iconStrokeWidth="1.25"
+          />
+        </div>
+        <ul class="hero__metrics" aria-label="Indicadores principales">
+          {
+            hero.kpis.map((kpi) => (
+              <li>
+                <strong>{kpi.value}</strong>
+                <span>{kpi.label}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="hero__visual">
+        <HeroVisual />
+      </div>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .hero {
+    padding-top: 3.5rem;
+    padding-bottom: 5.5rem;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0) 0%,
+      #e2f0ff 100%
+    );
+  }
+
+  .hero__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 28rem) minmax(19rem, 29.75rem);
+    align-items: center;
+    justify-content: space-between;
+    gap: 2.5rem;
+  }
+
+  .hero__copy {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .hero h1 {
+    max-width: 25rem;
+    font-size: var(--text-h1);
+    line-height: var(--leading-tight);
+    font-weight: var(--weight-extrabold);
+  }
+
+  .hero h1 span {
+    color: var(--color-primary-600);
+  }
+
+  .hero p {
+    max-width: 23rem;
+    font-size: var(--text-body-lg);
+    line-height: 1.65;
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.625rem;
+    padding-top: 0.25rem;
+  }
+
+  .hero__metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 27.5rem;
+    padding-top: 2rem;
+    margin-top: 1rem;
+    border-top: 1px solid rgba(17, 24, 39, 0.15);
+  }
+
+  .hero__metrics strong {
+    display: block;
+    margin-bottom: 0.125rem;
+    font-size: 2rem;
+    font-weight: var(--weight-extrabold);
+    line-height: 1;
+    color: var(--color-text-strong);
+    letter-spacing: -0.02em;
+  }
+
+  .hero__metrics span {
+    font-size: 0.75rem;
+    line-height: 1.4;
+    color: var(--color-text-soft);
+  }
+
+  .hero__visual {
+    position: relative;
+    padding: 0;
+  }
+
+  .hero__visual::before {
+    content: "";
+    position: absolute;
+    inset: -2.5rem -2rem -2.75rem -2.75rem;
+    background:
+      radial-gradient(
+        circle at 18% 82%,
+        rgba(125, 211, 252, 0.42),
+        transparent 34%
+      ),
+      radial-gradient(
+        circle at 82% 18%,
+        rgba(96, 165, 250, 0.34),
+        transparent 30%
+      ),
+      radial-gradient(
+        circle at 52% 56%,
+        rgba(147, 197, 253, 0.18),
+        transparent 54%
+      );
+    filter: blur(32px);
+    opacity: 1;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .hero__visual :global(.hero-visual) {
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (max-width: 1023px) {
+    .hero__inner {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .hero__visual {
+      max-width: 38rem;
+      margin-inline: auto;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .hero {
+      padding-top: 0.75rem;
+    }
+
+    .hero__actions {
+      flex-direction: column;
+    }
+
+    .hero__metrics {
+      grid-template-columns: 1fr;
+      max-width: none;
+    }
+  }
+</style>

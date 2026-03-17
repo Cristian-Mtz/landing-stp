@@ -1,0 +1,51 @@
+---
+interface Props {
+  label: string;
+  tone?: "primary" | "accent" | "neutral";
+  class?: string;
+}
+
+const { label, tone = "primary", class: className = "" } = Astro.props;
+---
+
+<span class={`badge badge--${tone} ${className}`.trim()}>
+  <span class="badge__dot"></span>
+  {label}
+</span>
+
+<style>
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.375rem 0.875rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.625rem;
+    font-weight: var(--weight-medium);
+    line-height: 1;
+    letter-spacing: -0.01em;
+    width: max-content;
+  }
+
+  .badge__dot {
+    width: 0.375rem;
+    height: 0.375rem;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  .badge--primary {
+    background: color-mix(in srgb, var(--color-primary-500) 15%, #eff6ff);
+    color: var(--color-primary-700);
+  }
+
+  .badge--accent {
+    background: color-mix(in srgb, var(--color-accent-500) 15%, #f0fdfa);
+    color: var(--color-accent-800);
+  }
+
+  .badge--neutral {
+    background: var(--color-neutral-100);
+    color: var(--color-neutral-700);
+  }
+</style>

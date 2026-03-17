@@ -1,0 +1,222 @@
+---
+
+---
+
+<div class="platform-visual" aria-hidden="true">
+  <div class="platform-visual__cup"></div>
+  <div class="platform-visual__phone">
+    <div class="platform-visual__screen">
+      <div class="platform-visual__status"></div>
+      <div class="platform-visual__chart">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="platform-visual__line"></div>
+      <div class="platform-visual__panel">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+  <div class="platform-visual__hand"></div>
+</div>
+
+<style>
+  .platform-visual {
+    position: relative;
+    min-height: 21rem;
+    border-radius: 1.5rem;
+    background:
+      linear-gradient(135deg, rgba(37, 99, 235, 0.12), transparent 24%),
+      linear-gradient(180deg, #8b6a42 0%, #6f5131 60%, #4a311f 100%);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+  }
+
+  .platform-visual::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.03) 0%,
+        transparent 12%,
+        rgba(255, 255, 255, 0.02) 45%,
+        transparent 72%
+      ),
+      linear-gradient(0deg, rgba(0, 0, 0, 0.08), transparent 25%);
+    mix-blend-mode: screen;
+  }
+
+  .platform-visual__cup {
+    position: absolute;
+    left: 1.5rem;
+    top: 1.75rem;
+    width: 8.5rem;
+    height: 8.5rem;
+    border-radius: 50%;
+    background:
+      radial-gradient(
+        circle at 50% 50%,
+        #0b1221 30%,
+        #111827 38%,
+        #1f2937 55%,
+        transparent 56%
+      ),
+      radial-gradient(
+        circle at 60% 40%,
+        rgba(255, 255, 255, 0.18),
+        transparent 30%
+      );
+    box-shadow: 0 24px 40px rgba(15, 23, 42, 0.28);
+  }
+
+  .platform-visual__phone {
+    position: absolute;
+    left: 53%;
+    top: 2.25rem;
+    width: 10.5rem;
+    height: 19rem;
+    padding: 0.75rem;
+    border-radius: 2rem;
+    background: linear-gradient(180deg, #0f172a, #111827);
+    box-shadow: 0 20px 42px rgba(15, 23, 42, 0.34);
+    transform: rotate(-8deg);
+  }
+
+  .platform-visual__screen {
+    width: 100%;
+    height: 100%;
+    padding: 1rem 0.9rem;
+    border-radius: 1.55rem;
+    background:
+      radial-gradient(circle at top, rgba(37, 99, 235, 0.35), transparent 42%),
+      linear-gradient(180deg, #111827 0%, #0b1220 100%);
+    color: white;
+  }
+
+  .platform-visual__status {
+    width: 44%;
+    height: 0.4rem;
+    margin-inline: auto;
+    border-radius: var(--radius-pill);
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  .platform-visual__chart {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: end;
+    gap: 0.5rem;
+    height: 5.25rem;
+    margin-top: 2rem;
+  }
+
+  .platform-visual__chart span {
+    border-radius: var(--radius-pill);
+    background: linear-gradient(
+      180deg,
+      var(--color-primary-400),
+      var(--color-primary-600)
+    );
+  }
+
+  .platform-visual__chart span:nth-child(1) {
+    height: 38%;
+  }
+  .platform-visual__chart span:nth-child(2) {
+    height: 54%;
+  }
+  .platform-visual__chart span:nth-child(3) {
+    height: 76%;
+  }
+  .platform-visual__chart span:nth-child(4) {
+    height: 92%;
+  }
+
+  .platform-visual__line {
+    height: 5rem;
+    margin-top: 1.4rem;
+    border-radius: 1rem;
+    background:
+      linear-gradient(
+        transparent 55%,
+        rgba(255, 255, 255, 0.08) 56%,
+        transparent 57%
+      ),
+      linear-gradient(
+        120deg,
+        transparent 0 8%,
+        rgba(16, 185, 129, 0.8) 9% 12%,
+        transparent 13% 22%,
+        rgba(59, 130, 246, 0.88) 23% 27%,
+        transparent 28% 42%,
+        rgba(20, 184, 166, 0.92) 43% 47%,
+        transparent 48% 63%,
+        rgba(59, 130, 246, 0.88) 64% 68%,
+        transparent 69% 100%
+      );
+  }
+
+  .platform-visual__panel {
+    display: grid;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .platform-visual__panel div {
+    height: 0.85rem;
+    border-radius: var(--radius-pill);
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  .platform-visual__panel div:nth-child(1) {
+    width: 88%;
+  }
+  .platform-visual__panel div:nth-child(2) {
+    width: 68%;
+  }
+  .platform-visual__panel div:nth-child(3) {
+    width: 80%;
+  }
+
+  .platform-visual__hand {
+    position: absolute;
+    right: 2rem;
+    bottom: -0.5rem;
+    width: 7rem;
+    height: 7rem;
+    border-radius: 45% 55% 35% 65%;
+    background: linear-gradient(180deg, #f0c8ad, #d89a78);
+    filter: drop-shadow(0 14px 24px rgba(15, 23, 42, 0.18));
+    transform: rotate(18deg);
+  }
+
+  @media (max-width: 767px) {
+    .platform-visual {
+      min-height: 17rem;
+    }
+
+    .platform-visual__cup {
+      width: 6.4rem;
+      height: 6.4rem;
+    }
+
+    .platform-visual__phone {
+      left: 48%;
+      top: 1.5rem;
+      width: 8.5rem;
+      height: 15.5rem;
+    }
+
+    .platform-visual__hand {
+      right: 1.2rem;
+      width: 5rem;
+      height: 5rem;
+    }
+  }
+</style>

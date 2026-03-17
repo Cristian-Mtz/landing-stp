@@ -1,0 +1,52 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="110" y1="60" x2="1020" y2="590" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F5F9FF"/>
+      <stop offset="1" stop-color="#E7F0FF"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#111827"/>
+      <stop offset="1" stop-color="#0B1220"/>
+    </linearGradient>
+    <filter id="shadow" x="0" y="0" width="1200" height="630" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="26" stdDeviation="35" flood-color="#0F172A" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="630" rx="36" fill="url(#bg)"/>
+  <circle cx="1024" cy="108" r="120" fill="#DDEAFE"/>
+  <circle cx="114" cy="512" r="164" fill="#E9F8F5"/>
+  <g filter="url(#shadow)">
+    <rect x="62" y="62" width="1076" height="506" rx="30" fill="#FFFFFF"/>
+  </g>
+  <rect x="62" y="62" width="1076" height="72" rx="30" fill="#FFFFFF"/>
+  <rect x="94" y="89" width="64" height="18" rx="9" fill="#2563EB"/>
+  <rect x="198" y="91" width="46" height="12" rx="6" fill="#CBD5E1"/>
+  <rect x="266" y="91" width="54" height="12" rx="6" fill="#CBD5E1"/>
+  <rect x="342" y="91" width="48" height="12" rx="6" fill="#CBD5E1"/>
+  <rect x="984" y="83" width="116" height="28" rx="14" fill="#2563EB"/>
+  <rect x="94" y="170" width="430" height="286" rx="24" fill="#FFFFFF"/>
+  <rect x="94" y="170" width="430" height="286" rx="24" stroke="#E2E8F0"/>
+  <rect x="94" y="170" width="118" height="20" rx="10" fill="#DBEAFE"/>
+  <text x="94" y="226" fill="#111827" font-family="Segoe UI, Arial, sans-serif" font-size="50" font-weight="700">Transformamos</text>
+  <text x="94" y="281" fill="#111827" font-family="Segoe UI, Arial, sans-serif" font-size="50" font-weight="700">la manera de</text>
+  <text x="94" y="336" fill="#2563EB" font-family="Segoe UI, Arial, sans-serif" font-size="50" font-weight="700">hacer pagos</text>
+  <text x="94" y="391" fill="#111827" font-family="Segoe UI, Arial, sans-serif" font-size="50" font-weight="700">digitales</text>
+  <text x="94" y="427" fill="#475569" font-family="Segoe UI, Arial, sans-serif" font-size="20">Infraestructura digital para operaciones seguras,</text>
+  <text x="94" y="453" fill="#475569" font-family="Segoe UI, Arial, sans-serif" font-size="20">veloces y listas para escalar.</text>
+  <rect x="94" y="485" width="148" height="40" rx="20" fill="#2563EB"/>
+  <rect x="258" y="485" width="148" height="40" rx="20" fill="#FFFFFF" stroke="#CBD5E1"/>
+  <rect x="94" y="548" width="86" height="58" rx="18" fill="#F8FAFC" stroke="#E2E8F0"/>
+  <rect x="192" y="548" width="86" height="58" rx="18" fill="#F8FAFC" stroke="#E2E8F0"/>
+  <rect x="290" y="548" width="86" height="58" rx="18" fill="#F8FAFC" stroke="#E2E8F0"/>
+  <g>
+    <rect x="646" y="150" width="362" height="308" rx="28" fill="url(#card)"/>
+    <rect x="684" y="180" width="286" height="248" rx="24" fill="#0F172A"/>
+    <path d="M740 228L821 174L912 362L822 416L740 228Z" fill="none" stroke="#F97316" stroke-width="4" stroke-opacity="0.9"/>
+    <path d="M702 208L871 180L950 365L781 394L702 208Z" fill="none" stroke="#E2E8F0" stroke-width="4" stroke-opacity="0.85"/>
+    <path d="M760 170L944 253L884 418L700 334L760 170Z" fill="none" stroke="#94A3B8" stroke-width="4" stroke-opacity="0.7"/>
+    <circle cx="920" cy="196" r="8" fill="#14B8A6"/>
+  </g>
+  <rect x="646" y="492" width="110" height="16" rx="8" fill="#14B8A6" fill-opacity="0.22"/>
+  <rect x="646" y="526" width="318" height="20" rx="10" fill="#0F172A" fill-opacity="0.12"/>
+  <text x="646" y="586" fill="#0F172A" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="600">STP | Infraestructura de pagos digitales</text>
+</svg>

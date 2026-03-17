@@ -1,0 +1,185 @@
+---
+import { benefitMetrics, benefitsIntro, features } from "../../data/landing";
+import Card from "../ui/Card.astro";
+import Container from "../ui/Container.astro";
+import Icon from "../ui/Icon.astro";
+import SectionHeader from "../ui/SectionHeader.astro";
+---
+
+<section class="section benefits" id="beneficios">
+  <Container>
+    <SectionHeader
+      align="center"
+      title={benefitsIntro.title}
+      description={benefitsIntro.description}
+    />
+
+    <div class="benefits__grid">
+      {
+        features.map((feature, index) => (
+          <Card class="benefits__card">
+            <div
+              class={`benefits__icon benefits__icon--${index === 2 ? "violet" : feature.tone}`.trim()}
+            >
+              <Icon name={feature.icon} size="24" strokeWidth="1.85" />
+            </div>
+            <div class="benefits__card-content">
+              <h3>{feature.title}</h3>
+              <p class="text-muted">{feature.description}</p>
+            </div>
+          </Card>
+        ))
+      }
+    </div>
+
+    <div class="benefits__metrics surface-card">
+      {
+        benefitMetrics.map((metric, index) => (
+          <>
+            <div class="benefits__metric">
+              <strong
+                class={`benefits__metric-value benefits__metric-value--${metric.tone ?? "primary"}`.trim()}
+              >
+                {metric.value}
+              </strong>
+              <span>{metric.label}</span>
+            </div>
+            {index < benefitMetrics.length - 1 && (
+              <span class="benefits__divider" aria-hidden="true" />
+            )}
+          </>
+        ))
+      }
+    </div>
+  </Container>
+</section>
+
+<style>
+  .benefits :global(.section-header) {
+    margin-bottom: 2.5rem;
+  }
+
+  .benefits__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+
+  .benefits__card {
+    display: flex;
+    flex-direction: column;
+    padding: 2.5rem 2rem !important;
+    min-height: 16rem;
+  }
+
+  .benefits__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: 0.875rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .benefits__icon--primary {
+    background: rgba(59, 130, 246, 0.12);
+    color: var(--color-primary-600);
+  }
+
+  .benefits__icon--accent {
+    background: rgba(20, 184, 166, 0.12);
+    color: var(--color-accent-700);
+  }
+
+  .benefits__icon--violet {
+    background: rgba(99, 102, 241, 0.12);
+    color: #5b4af6;
+  }
+
+  .benefits__card-content {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .benefits__card h3 {
+    font-size: 1.125rem;
+    line-height: 1.25;
+    font-weight: var(--weight-bold);
+  }
+
+  .benefits__card p {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  .benefits__metrics {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    max-width: 50rem;
+    margin: 3.5rem auto 0;
+    padding: 1.25rem 2rem;
+    background:
+      linear-gradient(
+        180deg,
+        rgba(239, 246, 255, 0.9),
+        rgba(240, 253, 250, 0.76)
+      ),
+      #fff;
+    border-radius: 1rem;
+  }
+
+  .benefits__metric {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .benefits__metric-value {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-size: 1.75rem;
+    font-weight: var(--weight-extrabold);
+    letter-spacing: -0.05em;
+  }
+
+  .benefits__metric-value--primary {
+    color: var(--color-primary-600);
+  }
+
+  .benefits__metric-value--accent {
+    color: var(--color-accent-700);
+  }
+
+  .benefits__metric span {
+    font-size: 0.875rem;
+    line-height: 1.35;
+    color: var(--color-text-soft);
+  }
+
+  .benefits__divider {
+    display: block;
+    width: 1px;
+    height: 2.5rem;
+    background: rgba(17, 24, 39, 0.08);
+  }
+
+  @media (max-width: 1023px) {
+    .benefits__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .benefits__metrics {
+      grid-template-columns: 1fr;
+      justify-items: start;
+      max-width: none;
+    }
+
+    .benefits__divider {
+      display: none;
+    }
+  }
+</style>

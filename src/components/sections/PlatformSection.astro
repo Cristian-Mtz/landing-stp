@@ -1,0 +1,138 @@
+---
+import { Image } from "astro:assets";
+import platformPlaceholder from "../../assets/images/platform-placeholder.png";
+import { platform, platformChecklist } from "../../data/landing";
+import Button from "../ui/Button.astro";
+import Container from "../ui/Container.astro";
+import Icon from "../ui/Icon.astro";
+import SectionHeader from "../ui/SectionHeader.astro";
+---
+
+<section class="section section--tight platform" id="soluciones">
+  <Container>
+    <div class="platform__feature">
+      <div class="platform__media">
+        <Image
+          src={platformPlaceholder}
+          alt="Placeholder visual de dashboard financiero y monitoreo operacional."
+          width={508}
+          height={339}
+          loading="lazy"
+        />
+      </div>
+
+      <div class="platform__copy">
+        <SectionHeader
+          eyebrow={platform.eyebrow}
+          title={platform.title}
+          description={platform.description}
+        />
+
+        <ul class="platform__checklist">
+          {
+            platformChecklist.map((item) => (
+              <li>
+                <span class="platform__check">
+                  <Icon name="check-circle" size="10" strokeWidth="1.9" />
+                </span>
+                <span>{item.label}</span>
+              </li>
+            ))
+          }
+        </ul>
+
+        <div class="platform__cta-wrapper">
+          <Button
+            label={platform.cta.label}
+            href={platform.cta.href}
+            size="md"
+            icon="arrow-right"
+          />
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .platform {
+    background: var(--color-neutral-50);
+  }
+
+  .platform__feature {
+    display: grid;
+    grid-template-columns: minmax(0, 30rem) minmax(0, 31rem);
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .platform__media {
+    padding: 2rem;
+    position: relative;
+  }
+
+  .platform__media::before {
+    content: "";
+    position: absolute;
+    inset: -2rem;
+    background: radial-gradient(
+      circle,
+      var(--color-accent-500) 0%,
+      transparent 60%
+    );
+    opacity: 0.6;
+    filter: blur(3rem);
+    z-index: -1;
+  }
+
+  .platform__media img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 506 / 337;
+    object-fit: cover;
+    border-radius: calc(var(--radius-2xl) - 0.25rem);
+  }
+
+  .platform__copy {
+    display: grid;
+    gap: 2.25rem;
+  }
+
+  .platform__checklist {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .platform__checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.625rem;
+    color: var(--color-text);
+    font-size: 0.875rem;
+    line-height: 1.65;
+  }
+
+  .platform__check {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 1.25rem;
+    height: 1.25rem;
+    background: var(--color-accent-100);
+    border-radius: 50%;
+    color: var(--color-accent-600);
+    margin-top: 0.1rem;
+  }
+
+  .platform__cta-wrapper {
+    justify-self: start;
+  }
+  @media (max-width: 1023px) {
+    .platform__feature {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+  }
+</style>

@@ -1,0 +1,20 @@
+---
+
+---
+
+<div class="container">
+  <slot />
+</div>
+
+<style>
+  .container {
+    width: min(100% - 2rem, var(--container-max));
+    margin-inline: auto;
+  }
+
+  @media (max-width: 767px) {
+    .container {
+      width: min(100% - 1.5rem, var(--container-max));
+    }
+  }
+</style>

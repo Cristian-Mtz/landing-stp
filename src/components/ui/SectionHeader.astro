@@ -1,0 +1,43 @@
+---
+import Badge from "./Badge.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+  eyebrow?: string;
+  align?: "left" | "center";
+}
+
+const { title, description, eyebrow, align = "left" } = Astro.props;
+---
+
+<div class={`section-header section-header--${align}`.trim()}>
+  {eyebrow && <Badge label={eyebrow} tone="accent" />}
+  <h2>{title}</h2>
+  {description && <p>{description}</p>}
+</div>
+
+<style>
+  .section-header {
+    display: grid;
+    gap: 0.625rem;
+  }
+
+  .section-header h2 {
+    font-size: var(--text-h2);
+    line-height: var(--leading-snug);
+    font-weight: var(--weight-extrabold);
+  }
+
+  .section-header p {
+    max-width: 48rem;
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--color-text-soft);
+  }
+
+  .section-header--center {
+    justify-items: center;
+    text-align: center;
+  }
+</style>
